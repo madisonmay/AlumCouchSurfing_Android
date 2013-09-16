@@ -14,6 +14,9 @@ import java.io.InputStreamReader;
 /**
  * Created by evan on 9/15/13.
  */
+
+
+
 public class NoteDetailActivity extends Activity {
 
     @Override
@@ -29,6 +32,10 @@ public class NoteDetailActivity extends Activity {
         TextView noteText = (TextView) findViewById(R.id.noteText);
 
         title.setText(fileName);
+        noteText.setText(getText(fileName));
+    }
+
+    public String getText(String fileName) {
         StringBuilder fileText = new StringBuilder();
         try{
             FileInputStream fis = openFileInput(fileName);
@@ -43,8 +50,6 @@ public class NoteDetailActivity extends Activity {
         }catch (IOException e){
             Log.e("IOException", e.getMessage());
         }
-
-        noteText.setText(fileText.toString());
-
+        return fileText.toString();
     }
 }

@@ -24,8 +24,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/titleField"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/titleText"
-        android:layout_marginTop="12dp" />
+        android:layout_marginTop="12dp"
+        android:layout_alignRight="@+id/noteField"
+        android:layout_toRightOf="@+id/titleText" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -39,8 +40,11 @@
         android:id="@+id/noteField"
         android:layout_below="@+id/titleField"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:padding="8dp" />
+        android:padding="8dp"
+        android:layout_alignRight="@+id/saveButton"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -48,15 +52,15 @@
         android:text="@string/save"
         android:id="@+id/saveButton"
         android:layout_below="@+id/noteField"
-        android:layout_alignLeft="@+id/noteField"
-        android:layout_alignRight="@+id/noteField" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/noteList"
         android:layout_below="@+id/saveButton"
-        android:layout_alignLeft="@+id/saveButton" />
+        android:layout_alignParentLeft="true" />
 
 
 </RelativeLayout>
