@@ -105,14 +105,24 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public Note findNote(String noteTitle) {
-        ArrayList<Note> notes = allFullNotes();
-        for (int i=0; i<notes.size(); i++) {
-           Note n = notes.get(i);
-           if (n.getNoteTitle().toString().equals(noteTitle.toString())) {
-               return n;
-           }
+        String query = "Select * FROM " + TABLE_NOTES + " WHERE " + COLUMN_NOTETITLE + " =  \"" + noteTitle + "\"";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        Note note = new Note();
+
+        if (cursor.moveToFirst()) {
+            note.setID(Integer.parseInt(cursor.getString(0)));
+            note.setNoteTitle(cursor.getString(1));
+            note.setNoteText(cursor.getString(2));
+            cursor.close();
+        } else {
+            note = null;
         }
-        return null;
+        db.close();
+        return note;
     }
 
     public boolean deleteNote(String noteTitle) {

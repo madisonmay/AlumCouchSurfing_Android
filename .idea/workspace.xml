@@ -106,7 +106,7 @@
       <file leaf-file-name="DBHandler.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/DBHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="107" column="7" selection-start="3171" selection-end="3434" vertical-scroll-proportion="0.39527026" vertical-offset="1692" max-vertical-offset="2610">
+            <state line="132" column="0" selection-start="3952" selection-end="3952" vertical-scroll-proportion="0.9391892" vertical-offset="1820" max-vertical-offset="2790">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1612#1618#0" expanded="true" />
@@ -470,7 +470,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19153094" sideWeight="0.79615384" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20384616" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20384616" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -617,7 +617,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/DBHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="7" selection-start="3171" selection-end="3434" vertical-scroll-proportion="0.39527026" vertical-offset="1692" max-vertical-offset="2610">
+        <state line="132" column="0" selection-start="3952" selection-end="3952" vertical-scroll-proportion="0.9391892" vertical-offset="1820" max-vertical-offset="2790">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1612#1618#0" expanded="true" />
