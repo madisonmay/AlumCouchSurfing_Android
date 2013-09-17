@@ -87,19 +87,5 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
-    public Note lookupNote (View view, String noteTitle) {
-        DBHandler dbHandler = new DBHandler(this, null, null, 1);
-
-        Note note = dbHandler.findNote(noteTitle);
-        return note;
-    }
-
-    public boolean removeNote (View view, String noteTitle) {
-        DBHandler dbHandler = new DBHandler(this, null, null, 1);
-
-        boolean result = dbHandler.deleteNote(noteTitle);
-        return result;
-    }
     
 }

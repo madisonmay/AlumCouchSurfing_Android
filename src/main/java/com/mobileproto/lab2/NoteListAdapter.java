@@ -43,7 +43,8 @@ public class NoteListAdapter extends ArrayAdapter {
             @Override
             public void onClick(View view) {
                 String noteTitle = name.getText().toString();
-//                activity.deleteFile(fileName);
+                DBHandler dbHandler = new DBHandler(activity.getApplicationContext(), null, null, 1);
+                dbHandler.deleteNote(noteTitle);
                 data.remove(position);
                 NoteListAdapter.this.notifyDataSetChanged();
             }

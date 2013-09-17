@@ -34,7 +34,6 @@ public class NoteDetailActivity extends Activity {
 
         title.setText(noteTitle);
         DBHandler dbHandler = new DBHandler(getApplicationContext(), null, null, 1);
-
         String text = dbHandler.findNote(noteTitle).getNoteText();
         noteText.setText(text);
     }

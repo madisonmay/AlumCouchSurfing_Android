@@ -76,10 +76,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="NoteDetailActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="NoteDetailActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/NoteDetailActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="0" selection-start="1054" selection-end="1054" vertical-scroll-proportion="0.7567568" vertical-offset="110" max-vertical-offset="702">
+            <state line="37" column="31" selection-start="1044" selection-end="1044" vertical-scroll-proportion="0.0" vertical-offset="92" max-vertical-offset="684">
               <folding />
             </state>
           </provider>
@@ -88,7 +88,7 @@
       <file leaf-file-name="NoteListAdapter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/NoteListAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="0" selection-start="1645" selection-end="1645" vertical-scroll-proportion="0.0" vertical-offset="182" max-vertical-offset="846">
+            <state line="14" column="3" selection-start="344" selection-end="344" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="864">
               <folding />
             </state>
           </provider>
@@ -97,16 +97,16 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="0" selection-start="2880" selection-end="2880" vertical-scroll-proportion="0.0" vertical-offset="542" max-vertical-offset="1602">
+            <state line="84" column="51" selection-start="2945" selection-end="2945" vertical-scroll-proportion="0.0" vertical-offset="599" max-vertical-offset="1350">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBHandler.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="DBHandler.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/DBHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="114" column="20" selection-start="3434" selection-end="3434" vertical-scroll-proportion="0.0" vertical-offset="1855" max-vertical-offset="2610">
+            <state line="107" column="7" selection-start="3171" selection-end="3434" vertical-scroll-proportion="0.39527026" vertical-offset="1692" max-vertical-offset="2610">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1612#1618#0" expanded="true" />
@@ -174,10 +174,10 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/Note.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/NoteDetailActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/NoteListAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/DBHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/NoteDetailActivity.java" />
       </list>
     </option>
   </component>
@@ -594,35 +594,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/NoteDetailActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="31" selection-start="1044" selection-end="1044" vertical-scroll-proportion="0.0" vertical-offset="92" max-vertical-offset="684">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="84" column="51" selection-start="2945" selection-end="2945" vertical-scroll-proportion="0.0" vertical-offset="599" max-vertical-offset="1350">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/NoteListAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="0" selection-start="1645" selection-end="1645" vertical-scroll-proportion="0.0" vertical-offset="182" max-vertical-offset="846">
+        <state line="14" column="3" selection-start="344" selection-end="344" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="864">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/DBHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="20" selection-start="3434" selection-end="3434" vertical-scroll-proportion="0.0" vertical-offset="1855" max-vertical-offset="2610">
+        <state line="107" column="7" selection-start="3171" selection-end="3434" vertical-scroll-proportion="0.39527026" vertical-offset="1692" max-vertical-offset="2610">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1612#1618#0" expanded="true" />
             <element signature="e#2342#2350#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="0" selection-start="2880" selection-end="2880" vertical-scroll-proportion="0.0" vertical-offset="542" max-vertical-offset="1602">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/NoteDetailActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="0" selection-start="1054" selection-end="1054" vertical-scroll-proportion="0.7567568" vertical-offset="110" max-vertical-offset="702">
-          <folding />
         </state>
       </provider>
     </entry>

@@ -59,8 +59,8 @@ public class DBHandler extends SQLiteOpenHelper {
             do {
                 Note note = new Note();
                 note.setID(Integer.parseInt(cursor.getString(0)));
-                note.setNoteText(cursor.getString(1));
-                note.setNoteTitle(cursor.getString(2));
+                note.setNoteTitle(cursor.getString(1));
+                note.setNoteText(cursor.getString(2));
                 notes.add(note);
             } while (cursor.moveToNext());
         }
@@ -83,7 +83,7 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             cursor.moveToFirst();
             do {
-                notes.add(cursor.getString(2));
+                notes.add(cursor.getString(1));
             } while (cursor.moveToNext());
         }
 
