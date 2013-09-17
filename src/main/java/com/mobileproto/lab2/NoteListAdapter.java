@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,13 +36,14 @@ public class NoteListAdapter extends ArrayAdapter {
 
         ImageButton del = (ImageButton) v.findViewById(R.id.deleteButton);
         final TextView name = (TextView) v.findViewById(R.id.titleTextView);
+//        name.setText(data.get(position).getNoteText());
         name.setText(data.get(position));
 
         del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String fileName = name.getText().toString();
-                activity.deleteFile(fileName);
+                String noteTitle = name.getText().toString();
+//                activity.deleteFile(fileName);
                 data.remove(position);
                 NoteListAdapter.this.notifyDataSetChanged();
             }

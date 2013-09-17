@@ -19,46 +19,47 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends Activity {
+    private TextView title;
+    private TextView note;
+    private List<String> noteTitles;
+    private NoteListAdapter aa;
+    private ListView notes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final TextView title = (TextView) findViewById(R.id.titleField);
+        DBHandler dbHandler = new DBHandler(getApplicationContext(), null, null, 1);
 
-
-        final TextView note = (TextView) findViewById(R.id.noteField);
-
-
-        List<String> files = new ArrayList<String>(Arrays.asList(fileList()));
-
-        final NoteListAdapter aa = new NoteListAdapter(this, android.R.layout.simple_list_item_1, files);
-
-        final ListView notes = (ListView) findViewById(R.id.noteList);
-
+        title = (TextView) findViewById(R.id.titleField);
+        note = (TextView) findViewById(R.id.noteField);
+        noteTitles = new ArrayList<String>(dbHandler.allNotes());
+        aa  = new NoteListAdapter(this, android.R.layout.simple_list_item_1, noteTitles);
+        notes = (ListView) findViewById(R.id.noteList);
         notes.setAdapter(aa);
-
-
 
         Button save = (Button)findViewById(R.id.saveButton);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String fileName = title.getText().toString();
+                String noteTitle = title.getText().toString();
                 String noteText = note.getText().toString();
-                if (fileName != null && noteText != null){
+                if (noteTitle != null && noteText != null){
                     try{
-                        FileOutputStream fos = openFileOutput(fileName, Context.MODE_PRIVATE);
-                        fos.write(noteText.getBytes());
-                        fos.close();
+                        DBHandler dbHandler = new DBHandler(getApplicationContext(), null, null, 1);
+
+                        Note new_note = new Note(noteTitle, noteText);
+
+                        dbHandler.addNote(new_note);
+
                         title.setText("");
                         note.setText("");
-                        aa.insert(fileName,0);
+                        aa.insert(noteTitle,0);
                         aa.notifyDataSetChanged();
-                    }catch (IOException e){
-                        Log.e("IOException", e.getMessage());
+                    } catch (Exception e){
+                        Log.e("Exception", e.getMessage());
                     }
                 }
             }
@@ -69,10 +70,10 @@ public class MainActivity extends Activity {
         notes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                final TextView title = (TextView) view.findViewById(R.id.titleTextView);
-                String fileName = title.getText().toString();
+                final TextView rowTitle = (TextView) view.findViewById(R.id.titleTextView);
+                String localTitle = rowTitle.getText().toString();
                 Intent in = new Intent(getApplicationContext(), NoteDetailActivity.class);
-                in.putExtra("file", fileName);
+                in.putExtra("noteTitle", localTitle);
                 startActivity(in);
             }
         });
@@ -85,6 +86,20 @@ public class MainActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    public Note lookupNote (View view, String noteTitle) {
+        DBHandler dbHandler = new DBHandler(this, null, null, 1);
+
+        Note note = dbHandler.findNote(noteTitle);
+        return note;
+    }
+
+    public boolean removeNote (View view, String noteTitle) {
+        DBHandler dbHandler = new DBHandler(this, null, null, 1);
+
+        boolean result = dbHandler.deleteNote(noteTitle);
+        return result;
     }
     
 }

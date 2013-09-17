@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 /**
  * Created by evan on 9/15/13.
@@ -26,30 +27,17 @@ public class NoteDetailActivity extends Activity {
 
         Intent intent = getIntent();
 
-        String fileName = intent.getStringExtra("file");
+        String noteTitle = intent.getStringExtra("noteTitle");
 
         TextView title = (TextView) findViewById(R.id.noteTitle);
         TextView noteText = (TextView) findViewById(R.id.noteText);
 
-        title.setText(fileName);
-        noteText.setText(getText(fileName));
-    }
+        title.setText(noteTitle);
+        DBHandler dbHandler = new DBHandler(getApplicationContext(), null, null, 1);
 
-    public String getText(String fileName) {
-        StringBuilder fileText = new StringBuilder();
-        try{
-            FileInputStream fis = openFileInput(fileName);
-            InputStreamReader inputStreamReader = new InputStreamReader(fis);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            String line;
-            while ((line = bufferedReader.readLine()) != null){
-                fileText.append(line);
-                fileText.append('\n');
-            }
-
-        }catch (IOException e){
-            Log.e("IOException", e.getMessage());
-        }
-        return fileText.toString();
+        String text = dbHandler.findNote(noteTitle).getNoteText();
+        noteText.setText(text);
     }
 }
+
+
