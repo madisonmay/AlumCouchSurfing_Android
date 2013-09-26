@@ -2,6 +2,7 @@ package com.mobileproto.lab2;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,19 +29,30 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         DBHandler dbHandler = new DBHandler(getApplicationContext(), null, null, 1);
 
         title = (TextView) findViewById(R.id.titleField);
-        note = (TextView) findViewById(R.id.noteField);
+        note = (EditText) findViewById(R.id.noteField);
         noteTitles = new ArrayList<String>(dbHandler.allNotes());
         aa  = new NoteListAdapter(this, android.R.layout.simple_list_item_1, noteTitles);
         notes = (ListView) findViewById(R.id.noteList);
         notes.setAdapter(aa);
-
         Button save = (Button)findViewById(R.id.saveButton);
+
+        note.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    note.setLines(15);
+                } else {
+                    note.setLines(2);
+                }
+            }
+        });
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,14 +71,13 @@ public class MainActivity extends Activity {
                         note.setText("");
                         aa.insert(noteTitle,0);
                         aa.notifyDataSetChanged();
+                        note.clearFocus();
                     } catch (Exception e){
                         Log.e("Exception", e.getMessage());
                     }
                 }
             }
         });
-
-        save.setFocusable(false);
 
         notes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

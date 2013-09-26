@@ -6,17 +6,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/sublime"
+    android:fontFamily="sans-serif-light"
     tools:context=".MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_field"
-        android:id="@+id/titleText"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:layout_alignBaseline="@+id/titleField"
-        android:layout_alignBottom="@+id/titleField"
-        android:layout_alignLeft="@+id/noteField" />
 
     <EditText
         android:layout_width="164dp"
@@ -26,14 +18,15 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="12dp"
         android:layout_alignRight="@+id/noteField"
-        android:layout_toRightOf="@+id/titleText" />
+        android:fontFamily="sans-serif-light"
+        android:layout_alignLeft="@+id/noteField"
+        android:hint="Title..."/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
-        android:lines="8"
-        android:maxLines="8"
+        android:lines="2"
         android:gravity="top"
         android:background="@color/grey"
         android:ems="10"
@@ -44,15 +37,19 @@
         android:layout_alignRight="@+id/saveButton"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp" />
+        android:fontFamily="sans-serif-light"
+        android:layout_marginTop="10dp"
+        android:hint="Text..."/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/save"
         android:id="@+id/saveButton"
+        android:background="#0099CC"
         android:layout_below="@+id/noteField"
         android:layout_alignParentLeft="true"
+        android:fontFamily="sans-serif-light"
         android:layout_alignParentRight="true" />
 
     <ListView

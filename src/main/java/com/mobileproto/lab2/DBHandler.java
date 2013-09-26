@@ -104,6 +104,14 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void updateNote(Note note, Note new_note) {
+
+        deleteNote(note.getNoteTitle());
+        addNote(new_note);
+
+    }
+
+
     public Note findNote(String noteTitle) {
         String query = "Select * FROM " + TABLE_NOTES + " WHERE " + COLUMN_NOTETITLE + " =  \"" + noteTitle + "\"";
 

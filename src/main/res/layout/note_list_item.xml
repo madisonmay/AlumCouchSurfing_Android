@@ -14,6 +14,7 @@
         android:clickable="false"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
+        android:fontFamily="sans-serif-light"
         android:gravity="center_vertical" />
 
     <ImageButton
