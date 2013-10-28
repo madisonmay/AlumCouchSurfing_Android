@@ -1,8 +1,10 @@
 package com.mobileproto.lab2;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -12,6 +14,21 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +39,13 @@ public class SearchActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         locationField = (EditText)findViewById(R.id.locationField);
 
@@ -34,13 +56,54 @@ public class SearchActivity extends Activity {
                 String location = locationField.getText().toString();
                 Log.d("location", location);
 
-                Intent i = new Intent(SearchActivity.this, MapActivity.class);
-                startActivity(i);
+                getLatLongFromAddress(location);
             }
         });
 
     }
 
+    public static void getLatLongFromAddress(String youraddress) {
+
+        String uri = "http://maps.google.com/maps/api/geocode/json?address=" +
+                Uri.encode(youraddress) + "&sensor=false";
+        HttpGet httpGet = new HttpGet(uri);
+        HttpClient client = new DefaultHttpClient();
+        HttpResponse response;
+        StringBuilder stringBuilder = new StringBuilder();
+
+        try {
+            response = client.execute(httpGet);
+            HttpEntity entity = response.getEntity();
+            InputStream stream = entity.getContent();
+            int b;
+            while ((b = stream.read()) != -1) {
+                stringBuilder.append((char) b);
+            }
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject = new JSONObject(stringBuilder.toString());
+
+            double lng = ((JSONArray)jsonObject.get("results")).getJSONObject(0)
+                    .getJSONObject("geometry").getJSONObject("location")
+                    .getDouble("lng");
+
+            double lat = ((JSONArray)jsonObject.get("results")).getJSONObject(0)
+                    .getJSONObject("geometry").getJSONObject("location")
+                    .getDouble("lat");
+
+            Log.d("latitude", String.valueOf(lat));
+            Log.d("longitude", String.valueOf(lng));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
