@@ -133,7 +133,7 @@
       <file leaf-file-name="MapActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/MapActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="31" selection-start="1254" selection-end="1254" vertical-scroll-proportion="0.8117155" vertical-offset="8" max-vertical-offset="558">
+            <state line="32" column="8" selection-start="1170" selection-end="1170" vertical-scroll-proportion="0.7364017" vertical-offset="8" max-vertical-offset="558">
               <folding />
             </state>
           </provider>
@@ -604,7 +604,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277635" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3470437" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3470437" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -768,7 +768,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mobileproto/lab2/MapActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="31" selection-start="1254" selection-end="1254" vertical-scroll-proportion="0.8117155" vertical-offset="8" max-vertical-offset="558">
+        <state line="32" column="8" selection-start="1170" selection-end="1170" vertical-scroll-proportion="0.7364017" vertical-offset="8" max-vertical-offset="558">
           <folding />
         </state>
       </provider>

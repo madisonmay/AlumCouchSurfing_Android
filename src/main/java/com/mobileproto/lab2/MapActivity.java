@@ -30,7 +30,7 @@ public class MapActivity extends Activity {
         double lng = b.getDouble("lng");
 
         CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(lat, lng));
-        CameraUpdate zoom = CameraUpdateFactory.zoomTo(10);
+        CameraUpdate zoom = CameraUpdateFactory.zoomTo(12);
 
         map.moveCamera(center);
         map.animateCamera(zoom);
