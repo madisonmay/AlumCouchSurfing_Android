@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.os.StrictMode;
 import android.util.Log;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -56,14 +57,24 @@ public class SearchActivity extends Activity {
                 String location = locationField.getText().toString();
                 Log.d("location", location);
 
-                getLatLongFromAddress(location);
+                ArrayList<String> latlng = getLatLongFromAddress(location);
+                int length = latlng.size();
+                Log.d("array length", String.valueOf(length));
+                Intent intent = new Intent(SearchActivity.this, MapActivity.class);
+                Bundle b = new Bundle();
+                b.putDouble("lat", Double.parseDouble(latlng.get(0)));
+                b.putDouble("lng", Double.parseDouble(latlng.get(1)));
+                intent.putExtras(b);
+                startActivity(intent);
+                finish();
             }
         });
 
     }
 
-    public static void getLatLongFromAddress(String youraddress) {
+    public static ArrayList getLatLongFromAddress(String youraddress) {
 
+        ArrayList<String> lst = new ArrayList();
         String uri = "http://maps.google.com/maps/api/geocode/json?address=" +
                 Uri.encode(youraddress) + "&sensor=false";
         HttpGet httpGet = new HttpGet(uri);
@@ -97,12 +108,17 @@ public class SearchActivity extends Activity {
                     .getJSONObject("geometry").getJSONObject("location")
                     .getDouble("lat");
 
+            lst.add(String.valueOf(lat));
+            lst.add(String.valueOf(lng));
+
             Log.d("latitude", String.valueOf(lat));
             Log.d("longitude", String.valueOf(lng));
+            return lst;
+
         } catch (JSONException e) {
             e.printStackTrace();
+            return lst;
         }
-
     }
 
     @Override
