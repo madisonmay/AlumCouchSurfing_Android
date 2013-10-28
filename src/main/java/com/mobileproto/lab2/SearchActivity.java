@@ -33,6 +33,9 @@ public class SearchActivity extends Activity {
             public void onClick(View view){
                 String location = locationField.getText().toString();
                 Log.d("location", location);
+
+                Intent i = new Intent(SearchActivity.this, MapActivity.class);
+                startActivity(i);
             }
         });
 
