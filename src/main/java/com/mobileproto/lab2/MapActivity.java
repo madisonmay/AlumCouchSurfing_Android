@@ -35,9 +35,10 @@ public class MapActivity extends Activity {
         map.moveCamera(center);
         map.animateCamera(zoom);
 
-        LatLng loc = new LatLng(37.7833, 122.4167);
+        LatLng loc = new LatLng(lat, lng);
         map.addMarker(new MarkerOptions()
-                .title("Paul Booth")
-                .position(loc));
+                .title(b.getString("location"))
+                .position(loc)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
     }
 }

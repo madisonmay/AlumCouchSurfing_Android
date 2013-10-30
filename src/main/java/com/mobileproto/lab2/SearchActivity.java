@@ -64,6 +64,7 @@ public class SearchActivity extends Activity {
                 Bundle b = new Bundle();
                 b.putDouble("lat", Double.parseDouble(latlng.get(0)));
                 b.putDouble("lng", Double.parseDouble(latlng.get(1)));
+                b.putString("location",location);
                 intent.putExtras(b);
                 startActivity(intent);
                 finish();
