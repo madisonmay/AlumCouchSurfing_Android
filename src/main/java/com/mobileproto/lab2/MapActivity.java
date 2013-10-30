@@ -14,6 +14,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 public class MapActivity extends Activity {
     private GoogleMap map;
 
@@ -40,5 +42,15 @@ public class MapActivity extends Activity {
                 .title(b.getString("location"))
                 .position(loc)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+
+        ArrayList<LatLng> locs = new ArrayList<LatLng>();
+        for (int i=0; i<10; i++) {
+            LatLng new_loc = new LatLng(lat+.0001*i, lng);
+            locs.add(new_loc);
+            map.addMarker(new MarkerOptions()
+                .title(String.valueOf(i))
+                .position(new_loc)
+            );
+        }
     }
 }
