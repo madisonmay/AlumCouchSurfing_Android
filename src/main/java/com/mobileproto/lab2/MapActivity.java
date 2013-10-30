@@ -34,5 +34,10 @@ public class MapActivity extends Activity {
 
         map.moveCamera(center);
         map.animateCamera(zoom);
+
+        LatLng loc = new LatLng(37.7833, 122.4167);
+        map.addMarker(new MarkerOptions()
+                .title("Paul Booth")
+                .position(loc));
     }
 }
