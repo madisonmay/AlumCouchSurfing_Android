@@ -32,7 +32,7 @@ public class MapActivity extends Activity {
         double lng = b.getDouble("lng");
 
         CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(lat, lng));
-        CameraUpdate zoom = CameraUpdateFactory.zoomTo(12);
+        CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
 
         map.moveCamera(center);
         map.animateCamera(zoom);
@@ -44,8 +44,8 @@ public class MapActivity extends Activity {
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
         ArrayList<LatLng> locs = new ArrayList<LatLng>();
-        for (int i=0; i<10; i++) {
-            LatLng new_loc = new LatLng(lat+.0001*i, lng);
+        for (int i=1; i<10; i++) {
+            LatLng new_loc = new LatLng(lat+.001*i, lng);
             locs.add(new_loc);
             map.addMarker(new MarkerOptions()
                 .title(String.valueOf(i))
