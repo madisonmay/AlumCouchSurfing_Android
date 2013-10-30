@@ -11,6 +11,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -32,10 +33,7 @@ public class MapActivity extends Activity {
         double lng = b.getDouble("lng");
 
         CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(lat, lng));
-        CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
-
         map.moveCamera(center);
-        map.animateCamera(zoom);
 
         LatLng loc = new LatLng(lat, lng);
         map.addMarker(new MarkerOptions()
@@ -44,13 +42,18 @@ public class MapActivity extends Activity {
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
         ArrayList<LatLng> locs = new ArrayList<LatLng>();
+        LatLngBounds.Builder build = new LatLngBounds.Builder();
         for (int i=1; i<10; i++) {
             LatLng new_loc = new LatLng(lat+.001*i, lng);
             locs.add(new_loc);
-            map.addMarker(new MarkerOptions()
-                .title(String.valueOf(i))
-                .position(new_loc)
-            );
+            MarkerOptions marker = new MarkerOptions().title(String.valueOf(i)).position(new_loc);
+            map.addMarker(marker);
+            build.include(marker.getPosition());
         }
+
+        LatLngBounds bounds = build.build();
+//Change the padding as per needed
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 25,25,5);
+        map.animateCamera(cu);
     }
 }
