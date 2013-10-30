@@ -32,7 +32,7 @@ public class MapActivity extends Activity {
         double lat = b.getDouble("lat");
         double lng = b.getDouble("lng");
 
-        CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(lat, lng));
+        CameraUpdate center = CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng), 12);
         map.moveCamera(center);
 
         LatLng loc = new LatLng(lat, lng);
@@ -51,9 +51,12 @@ public class MapActivity extends Activity {
             build.include(marker.getPosition());
         }
 
+/*
         LatLngBounds bounds = build.build();
 //Change the padding as per needed
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 25,25,5);
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 25, 25, -25);
         map.animateCamera(cu);
+
+*/
     }
 }
