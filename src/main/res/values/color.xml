@@ -2,5 +2,6 @@
 <resources>
     <color name="grey">#666666</color>
     <color name="sublime">#272822</color>
+    <color name="light">#ddd</color>
 
 </resources>
