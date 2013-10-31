@@ -15,12 +15,22 @@
         android:inputType="text"
         android:layout_height="wrap_content"
         android:id="@+id/locationField"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="12dp"
         android:layout_alignRight="@+id/searchButton"
         android:fontFamily="sans-serif-light"
         android:layout_alignLeft="@+id/searchButton"
-        android:hint="Location..."/>
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/searchButton"
+        android:hint="Location..."
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/question_field"
+        android:id="@+id/questionText"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/locationField"
+        android:textAppearance="?android:textAppearanceLarge" />
 
     <Button
         android:layout_width="wrap_content"
@@ -28,8 +38,8 @@
         android:text="@string/search"
         android:id="@+id/searchButton"
         android:background="#0099CC"
-        android:layout_below="@+id/locationField"
         android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
         android:fontFamily="sans-serif-light"
         android:layout_alignParentRight="true" />
 
