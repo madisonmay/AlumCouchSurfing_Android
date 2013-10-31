@@ -34,6 +34,8 @@ public class MapActivity extends Activity {
 
         CameraUpdate center = CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng), 12);
         map.moveCamera(center);
+        // Sets the map type to be "hybrid"
+        map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
         LatLng loc = new LatLng(lat, lng);
         map.addMarker(new MarkerOptions()
