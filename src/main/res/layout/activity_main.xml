@@ -43,5 +43,13 @@
         android:fontFamily="sans-serif-light"
         android:layout_alignParentRight="true" />
 
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/ic_olin"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

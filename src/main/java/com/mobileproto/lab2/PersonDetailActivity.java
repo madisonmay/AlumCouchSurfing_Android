@@ -34,6 +34,16 @@ public class PersonDetailActivity extends Activity {
         String Address = "51 Perkins Street";
         String email = "natalie.mattison@students.olin.edu";
 
+        Button backButton = (Button)findViewById(R.id.button);
+        backButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(PersonDetailActivity.this, MapActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 }
 
