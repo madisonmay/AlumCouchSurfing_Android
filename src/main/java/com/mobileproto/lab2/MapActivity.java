@@ -35,7 +35,7 @@ public class MapActivity extends Activity {
         CameraUpdate center = CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng), 12);
         map.moveCamera(center);
         // Sets the map type to be "hybrid"
-        map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
 
         LatLng loc = new LatLng(lat, lng);
         map.addMarker(new MarkerOptions()
@@ -48,7 +48,7 @@ public class MapActivity extends Activity {
         for (int i=1; i<10; i++) {
             LatLng new_loc = new LatLng(lat+.001*i, lng);
             locs.add(new_loc);
-            MarkerOptions marker = new MarkerOptions().title(String.valueOf(i)).position(new_loc);
+            MarkerOptions marker = new MarkerOptions().title(String.valueOf(i)).position(new_loc).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher));
             map.addMarker(marker);
             build.include(marker.getPosition());
         }
