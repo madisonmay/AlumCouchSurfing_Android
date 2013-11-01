@@ -29,6 +29,11 @@ public class PersonDetailActivity extends Activity {
 
         personName = (TextView)findViewById(R.id.personName);
 
+        //fake data
+        String Name = "Natalie Mattison";
+        String Address = "51 Perkins Street";
+        String email = "natalie.mattison@students.olin.edu";
+
     }
 }
 

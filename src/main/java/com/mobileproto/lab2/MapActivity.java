@@ -1,6 +1,7 @@
 package com.mobileproto.lab2;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -51,6 +52,20 @@ public class MapActivity extends Activity {
             MarkerOptions marker = new MarkerOptions().title(String.valueOf(i)).position(new_loc).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher));
             map.addMarker(marker);
             build.include(marker.getPosition());
+            //when you click a marker?
+            map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+                    Intent intent = new Intent(MapActivity.this, PersonDetailActivity.class);
+                    Bundle b = new Bundle();
+                    intent.putExtras(b);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                }
+
+            }
+            );
         }
 
 /*
