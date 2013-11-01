@@ -38,9 +38,9 @@
         android:text="@string/search"
         android:id="@+id/searchButton"
         android:background="#0099CC"
+        android:textColor="@color/white"
         android:layout_alignParentLeft="true"
         android:layout_centerInParent="true"
-        android:fontFamily="sans-serif-light"
         android:layout_alignParentRight="true" />
 
     <ImageView

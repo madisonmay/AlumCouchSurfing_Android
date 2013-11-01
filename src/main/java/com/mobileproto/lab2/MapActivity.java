@@ -30,8 +30,9 @@ public class MapActivity extends Activity {
         map.setMyLocationEnabled(true);
 
         Bundle b = getIntent().getExtras();
-        double lat = b.getDouble("lat");
-        double lng = b.getDouble("lng");
+        final double lat = b.getDouble("lat");
+        final double lng = b.getDouble("lng");
+        final String location_word = b.getString("location");
 
         CameraUpdate center = CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng), 12);
         map.moveCamera(center);
@@ -40,14 +41,14 @@ public class MapActivity extends Activity {
 
         LatLng loc = new LatLng(lat, lng);
         map.addMarker(new MarkerOptions()
-                .title(b.getString("location"))
+                .title(location_word)
                 .position(loc)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
         ArrayList<LatLng> locs = new ArrayList<LatLng>();
         LatLngBounds.Builder build = new LatLngBounds.Builder();
         for (int i=1; i<10; i++) {
-            LatLng new_loc = new LatLng(lat+.001*i, lng);
+            LatLng new_loc = new LatLng(lat+.01*i, lng+.01*i);
             locs.add(new_loc);
             MarkerOptions marker = new MarkerOptions().title(String.valueOf(i)).position(new_loc).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher));
             map.addMarker(marker);
@@ -58,6 +59,9 @@ public class MapActivity extends Activity {
                 public boolean onMarkerClick(Marker marker) {
                     Intent intent = new Intent(MapActivity.this, PersonDetailActivity.class);
                     Bundle b = new Bundle();
+                    b.putDouble("lat", lat);
+                    b.putDouble("lng", lng);
+                    b.putString("location",location_word);
                     intent.putExtras(b);
                     startActivity(intent);
                     finish();

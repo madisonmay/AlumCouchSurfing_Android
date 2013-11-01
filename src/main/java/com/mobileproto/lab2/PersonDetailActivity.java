@@ -29,6 +29,11 @@ public class PersonDetailActivity extends Activity {
 
         personName = (TextView)findViewById(R.id.personName);
 
+        Bundle b = getIntent().getExtras();
+        final double lat = b.getDouble("lat");
+        final double lng = b.getDouble("lng");
+        final String location_word = b.getString("location");
+
         //fake data
         String Name = "Natalie Mattison";
         String Address = "51 Perkins Street";
@@ -39,6 +44,11 @@ public class PersonDetailActivity extends Activity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(PersonDetailActivity.this, MapActivity.class);
+                Bundle b = new Bundle();
+                b.putDouble("lat", lat);
+                b.putDouble("lng", lng);
+                b.putString("location",location_word);
+                intent.putExtras(b);
                 startActivity(intent);
                 finish();
             }
@@ -46,5 +56,6 @@ public class PersonDetailActivity extends Activity {
 
     }
 }
+
 
 

@@ -51,6 +51,8 @@
         android:layout_height="wrap_content"
         android:text="Back"
         android:id="@+id/button"
+        android:background="#0099CC"
+        android:textColor="@color/white"
         android:layout_gravity="center" />
 
 </LinearLayout>
