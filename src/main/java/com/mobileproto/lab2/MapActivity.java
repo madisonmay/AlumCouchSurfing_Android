@@ -126,10 +126,10 @@ public class MapActivity extends Activity {
                 try {
                     alums = raw.getJSONArray("alumni");
                     for (int i=0; i<alums.length(); i++) {
-                        JSONObject alum = alums.getJSONObject(i);
 
-                        final double lat = alum.getDouble("lat");
-                        final double lng = alum.getDouble("lng");
+                        final JSONObject alum = alums.getJSONObject(i);
+                        double lat = alum.getDouble("lat");
+                        double lng = alum.getDouble("lng");
                         final String name = alum.getString("name");
                         final String gradYear = alum.getString("class");
                         final String email = alum.getString("email");
