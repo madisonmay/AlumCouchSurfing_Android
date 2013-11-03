@@ -2,6 +2,7 @@ package com.mobileproto.lab2;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -16,6 +17,18 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.HttpConnectionParams;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class MapActivity extends Activity {
@@ -23,11 +36,14 @@ public class MapActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
 
         GoogleMap map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
         map.setMyLocationEnabled(true);
+
+        getAlumni();
 
         Bundle b = getIntent().getExtras();
         final double lat = b.getDouble("lat");
@@ -80,4 +96,59 @@ public class MapActivity extends Activity {
 
 */
     }
+
+    public void getAlumni () {
+        new AsyncTask<Void, Void, JSONObject>() {
+            HttpClient client = new DefaultHttpClient();
+            HttpResponse response;
+            InputStream inputStream = null;
+            String result = "";
+
+
+            @Override
+            protected void onPreExecute() {
+                HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000);
+            }
+
+            protected JSONObject doInBackground(Void... voids) {
+                JSONObject raw = null;
+
+                try {
+                    String website = "http://olinbnb.herokuapp.com/";
+                    HttpGet all_alumni = new HttpGet(website);
+                    all_alumni.setHeader("Content-type","application/json");
+
+                    response = client.execute(all_alumni);
+                    response.getStatusLine().getStatusCode();
+                    HttpEntity entity = response.getEntity();
+
+                    inputStream = entity.getContent();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"),8);
+                    StringBuilder sb = new StringBuilder();
+
+                    String line;
+                    String nl = System.getProperty("line.separator");
+                    while ((line = reader.readLine())!= null){
+                        sb.append(line + nl);
+                    }
+                    result = sb.toString();
+                }
+                catch (Exception e) {e.printStackTrace(); Log.e("Server", "Cannot Establish Connection");
+                }
+                finally{
+                    try{if(inputStream != null)inputStream.close();}catch(Exception squish){}}
+
+                try {
+                    if (!result.equals("")) {
+
+                        raw = new JSONObject(result);
+                    }
+                }catch (JSONException e){e.printStackTrace();}
+                Log.d("JSON RESULT", result.toString());
+                return raw;
+            }
+        }.execute();
+
+    }
+
 }
