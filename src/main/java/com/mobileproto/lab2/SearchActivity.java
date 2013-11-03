@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -67,12 +68,18 @@ public class SearchActivity extends Activity {
                 Log.d("array length", String.valueOf(length));
                 Intent intent = new Intent(SearchActivity.this, MapActivity.class);
                 Bundle b = new Bundle();
-                b.putDouble("lat", Double.parseDouble(latlng.get(0)));
-                b.putDouble("lng", Double.parseDouble(latlng.get(1)));
-                b.putString("location",location);
-                intent.putExtras(b);
-                startActivity(intent);
-                finish();
+                if (latlng.size() == 2) {
+                    double lat = Double.parseDouble(latlng.get(0));
+                    double lng = Double.parseDouble(latlng.get(1));
+                    b.putDouble("lat", lat);
+                    b.putDouble("lng", lng);
+                    b.putString("location",location);
+                    intent.putExtras(b);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Please enter a valid location", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
