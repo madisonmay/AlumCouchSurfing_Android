@@ -2,10 +2,12 @@ package com.mobileproto.lab2;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -50,6 +52,14 @@ public class PersonDetailActivity extends Activity {
         TextView addressField = (TextView) this.findViewById(R.id.address);
         final String address = b.getString("address");
         addressField.setText(address);
+
+        ImageView imageField = (ImageView) this.findViewById(R.id.imageView);
+        final String gender = b.getString("gender");
+        if (gender == "male") {
+            imageField.setImageResource(R.drawable.ic_male);
+        } else {
+            imageField.setImageResource(R.drawable.ic_female);
+        }
 
 
 
