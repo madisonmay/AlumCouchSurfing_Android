@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -23,6 +24,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,71 +32,45 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class MapActivity extends Activity {
     private GoogleMap map;
+    JSONArray alums;
+    private double latitude;
+    private double longitude;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
 
-        GoogleMap map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
         map.setMyLocationEnabled(true);
 
-        getAlumni();
-
         Bundle b = getIntent().getExtras();
-        final double lat = b.getDouble("lat");
-        final double lng = b.getDouble("lng");
+        latitude = b.getDouble("lat");
+        longitude = b.getDouble("lng");
         final String location_word = b.getString("location");
 
-        CameraUpdate center = CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng), 12);
+        CameraUpdate center = CameraUpdateFactory.newLatLngZoom(new LatLng(latitude,longitude), 12);
         map.moveCamera(center);
         // Sets the map type to be "hybrid"
         map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
 
-        LatLng loc = new LatLng(lat, lng);
+        LatLng loc = new LatLng(latitude, longitude);
         map.addMarker(new MarkerOptions()
                 .title(location_word)
                 .position(loc)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
-        ArrayList<LatLng> locs = new ArrayList<LatLng>();
-        LatLngBounds.Builder build = new LatLngBounds.Builder();
-        for (int i=1; i<10; i++) {
-            LatLng new_loc = new LatLng(lat+.01*i, lng+.01*i);
-            locs.add(new_loc);
-            MarkerOptions marker = new MarkerOptions().title(String.valueOf(i)).position(new_loc).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher));
-            map.addMarker(marker);
-            build.include(marker.getPosition());
-            //when you click a marker?
-            map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                @Override
-                public boolean onMarkerClick(Marker marker) {
-                    Intent intent = new Intent(MapActivity.this, PersonDetailActivity.class);
-                    Bundle b = new Bundle();
-                    b.putDouble("lat", lat);
-                    b.putDouble("lng", lng);
-                    b.putString("location",location_word);
-                    intent.putExtras(b);
-                    startActivity(intent);
-                    finish();
-                    return true;
-                }
+        getAlumni();
 
-            }
-            );
-        }
-
-/*
-        LatLngBounds bounds = build.build();
-//Change the padding as per needed
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 25, 25, -25);
-        map.animateCamera(cu);
-
-*/
     }
 
     public void getAlumni () {
@@ -140,12 +116,54 @@ public class MapActivity extends Activity {
 
                 try {
                     if (!result.equals("")) {
-
                         raw = new JSONObject(result);
                     }
                 }catch (JSONException e){e.printStackTrace();}
-                Log.d("JSON RESULT", result.toString());
                 return raw;
+            }
+
+            protected void onPostExecute(JSONObject raw) {
+                try {
+                    alums = raw.getJSONArray("alumni");
+                    for (int i=0; i<alums.length(); i++) {
+                        JSONObject alum = alums.getJSONObject(i);
+
+                        final double lat = alum.getDouble("lat");
+                        final double lng = alum.getDouble("lng");
+                        final String name = alum.getString("name");
+                        final String gradYear = alum.getString("class");
+                        final String email = alum.getString("email");
+                        final String address = alum.getString("address");
+                        final String gender = alum.getString("gender");
+
+                        LatLng new_loc = new LatLng(lat, lng);
+                        MarkerOptions marker = new MarkerOptions().title(String.valueOf(i)).position(new_loc).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher));
+                        map.addMarker(marker);
+                        //when you click a marker?
+                        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                            @Override
+                            public boolean onMarkerClick(Marker marker) {
+                                Intent intent = new Intent(MapActivity.this, PersonDetailActivity.class);
+                                Bundle b = new Bundle();
+                                b.putDouble("lat", latitude);
+                                b.putDouble("lng", longitude);
+                                b.putString("name", name);
+                                b.putString("email", email);
+                                b.putString("class", gradYear);
+                                b.putString("address", address);
+                                b.putString("gender", gender);
+                                intent.putExtras(b);
+                                startActivity(intent);
+                                finish();
+                                return true;
+                            }
+
+                        });
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }.execute();
 

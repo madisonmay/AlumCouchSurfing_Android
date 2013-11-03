@@ -34,10 +34,24 @@ public class PersonDetailActivity extends Activity {
         final double lng = b.getDouble("lng");
         final String location_word = b.getString("location");
 
-        //fake data
-        String Name = "Natalie Mattison";
-        String Address = "51 Perkins Street";
-        String email = "natalie.mattison@students.olin.edu";
+
+        TextView nameField = (TextView) this.findViewById(R.id.personName);
+        final String name = b.getString("name");
+        nameField.setText(name);
+
+        TextView emailField = (TextView) this.findViewById(R.id.email);
+        final String email = b.getString("email");
+        emailField.setText(email);
+
+        TextView yearField = (TextView) this.findViewById(R.id.yearclass);
+        final String year = b.getString("class");
+        yearField.setText("Class of " + year);
+
+        TextView addressField = (TextView) this.findViewById(R.id.address);
+        final String address = b.getString("address");
+        addressField.setText(address);
+
+
 
         Button backButton = (Button)findViewById(R.id.button);
         backButton.setOnClickListener(new View.OnClickListener(){
