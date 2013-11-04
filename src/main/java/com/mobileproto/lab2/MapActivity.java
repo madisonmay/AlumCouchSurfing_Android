@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
+import android.util.Pair;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -32,6 +33,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class MapActivity extends Activity {
@@ -39,6 +41,7 @@ public class MapActivity extends Activity {
     JSONArray alums;
     private double latitude;
     private double longitude;
+    HashMap<String, JSONObject> d = new HashMap<String, JSONObject>();
 
 
     @Override
@@ -127,18 +130,19 @@ public class MapActivity extends Activity {
                     alums = raw.getJSONArray("alumni");
                     for (int i=0; i<alums.length(); i++) {
 
-                        final JSONObject alum = alums.getJSONObject(i);
+                        JSONObject alum = alums.getJSONObject(i);
                         double lat = alum.getDouble("lat");
                         double lng = alum.getDouble("lng");
-                        final String name = alum.getString("name");
-                        final String gradYear = alum.getString("class");
-                        final String email = alum.getString("email");
-                        final String address = alum.getString("address");
-                        final String gender = alum.getString("gender");
+                        Log.d("Dict: ", d.toString());
 
                         LatLng new_loc = new LatLng(lat, lng);
                         MarkerOptions marker = new MarkerOptions().title(String.valueOf(i)).position(new_loc).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher));
                         map.addMarker(marker);
+
+                        LatLng pos = marker.getPosition();
+                        String ll = (String.valueOf(pos.latitude)).substring(0, 6) + (String.valueOf(pos.longitude)).substring(0, 6);
+                        d.put(ll, alum);
+                        Log.d("L*L Key: ", ll.toString());
                         //when you click a marker?
                         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                             @Override
@@ -147,15 +151,32 @@ public class MapActivity extends Activity {
                                 Bundle b = new Bundle();
                                 b.putDouble("lat", latitude);
                                 b.putDouble("lng", longitude);
-                                b.putString("name", name);
-                                b.putString("email", email);
-                                b.putString("class", gradYear);
-                                b.putString("address", address);
-                                b.putString("gender", gender);
-                                intent.putExtras(b);
-                                startActivity(intent);
-                                finish();
-                                return true;
+                                LatLng pos = marker.getPosition();
+                                String ll = (String.valueOf(pos.latitude)).substring(0, 6) + (String.valueOf(pos.longitude)).substring(0, 6);
+                                Log.d("L*L: ", ll.toString());
+
+                                JSONObject alumnus = d.get(ll);
+                                Log.d("Alumnus: ", alumnus.toString());
+                                try {
+                                    String name = alumnus.getString("name");
+                                    String gradYear = alumnus.getString("class");
+                                    String email = alumnus.getString("email");
+                                    String address = alumnus.getString("address");
+                                    String gender = alumnus.getString("gender");
+
+                                    b.putString("name", name);
+                                    b.putString("email", email);
+                                    b.putString("class", gradYear);
+                                    b.putString("address", address);
+                                    b.putString("gender", gender);
+                                    intent.putExtras(b);
+                                    startActivity(intent);
+                                    finish();
+                                    return true;
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    return false;
+                                }
                             }
 
                         });

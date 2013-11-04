@@ -55,7 +55,7 @@ public class PersonDetailActivity extends Activity {
 
         ImageView imageField = (ImageView) this.findViewById(R.id.imageView);
         final String gender = b.getString("gender");
-        if (gender == "male") {
+        if (gender.equals("male")) {
             imageField.setImageResource(R.drawable.ic_male);
         } else {
             imageField.setImageResource(R.drawable.ic_female);
